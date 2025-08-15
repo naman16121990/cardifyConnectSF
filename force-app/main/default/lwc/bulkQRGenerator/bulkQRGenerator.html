@@ -1,0 +1,56 @@
+<template>
+    <lightning-card title="Contact Selector" icon-name="standard:contact">
+        <!-- Two-column layout for Account Selector & Search -->
+        <div class="slds-grid slds-wrap slds-p-around_small">
+            <div class="slds-col slds-size_1-of-2 slds-p-right_small">
+                <lightning-combobox
+                    name="accountSelector"
+                    label="Select Account"
+                    options={accountOptions}
+                    value={selectedAccountId}
+                    placeholder="Select an Account"
+                    onchange={handleAccountChange}>
+                </lightning-combobox>
+            </div>
+            <div class="slds-col slds-size_1-of-2 slds-p-left_small">
+                <lightning-input type="search"
+                    label="Search Contacts"
+                    placeholder="Search..."
+                    value={searchKey}
+                    onchange={handleSearchKeyChange}>
+                </lightning-input>
+            </div>
+        </div>
+
+        <!-- Toolbar with Cardify All button -->
+        <div class="slds-grid slds-grid_align-end slds-p-horizontal_small slds-p-vertical_x-small">
+            <lightning-button 
+                label="Cardify All"
+                variant="brand"
+                onclick={handleCardifyAll}
+                disabled={isCardifyDisabled}>
+            </lightning-button>
+        </div>
+
+        <!-- Contacts Data Table -->
+        <div class="slds-p-horizontal_small slds-p-bottom_small">
+            <template if:true={filteredContacts}>
+                <lightning-datatable
+                    key-field="Id"
+                    data={filteredContacts}
+                    columns={columns}
+                    sorted-by={sortBy}
+                    sorted-direction={sortDirection}
+                    onsort={handleSort}
+                    onrowselection={handleRowSelection}
+                    max-row-selection="999"
+                    selected-rows={selectedContactIds}>
+                </lightning-datatable>
+
+            </template>
+            <template if:true={contactsError}>
+                <p class="slds-text-color_error">Error loading contacts: {contactsError}</p>
+            </template>
+        </div>
+    </lightning-card>
+</template>

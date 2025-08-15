@@ -1,0 +1,56 @@
+.lightning-studio{
+	color : blue;
+}
+
+/* Elevation & rounded styling for license boxes */
+.license-box {
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.07);
+}
+
+/* Price styling */
+.price-text {
+    font-weight: 600;
+    font-size: 1rem;
+    color: #555;
+}
+.price-value {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--lwc-colorBrand);
+}
+
+/* Subtotal styling */
+.subtotal-text {
+    font-weight: 600;
+    font-size: 1rem;
+    color: #444;
+}
+.subtotal-value {
+    font-size: 1.25rem;
+    color: #28a745; /* Green shade */
+}
+
+/* Summary box styling */
+.summary-box {
+    border-radius: 0.5rem;
+    background-color: #f4f6f9;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    text-align: right;
+}
+.gst-line {
+    font-size: 1rem;
+    color: #555;
+}
+.total-line {
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin: 0.5rem 0 1rem;
+}
+
+/* Pay button styling */
+.pay-button {
+    margin-top: 0.5rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+}

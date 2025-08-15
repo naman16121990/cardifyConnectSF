@@ -1,0 +1,64 @@
+.outer-wrapper {
+    max-width: 800px;          /* Container width to hold 2 columns */
+    margin: 2rem auto;         /* Center the form horizontally */
+    padding: 1rem;
+    box-sizing: border-box;
+}
+
+.columns-container {
+    display: flex;
+    gap: 1rem;                /* Space between columns */
+    justify-content: space-between;
+}
+
+.column-card {
+    flex: 1;                  /* Each column takes equal width */
+    padding: 1rem;
+}
+
+.form-group lightning-input {
+    width: 100%;              /* Inputs take full width of card */
+    margin-bottom: 1rem;
+}
+
+.button-container {
+    margin-top: 2rem;
+    text-align: center;       /* Center the button horizontally */
+}
+
+.submit-btn {
+    max-width: 200px;
+    height: 40px;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 4px;
+    color: white;
+}
+
+.submit-btn.slds-button_brand {
+    background-color: #0053ba;
+    border-color: #0099ff;
+}
+
+
+.description {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: #333333;
+    font-size: 14px;
+    font-family: Arial, sans-serif;
+}
+
+
+.terms-container {
+    text-align: center;
+    margin-top: 1rem;
+}
+
+.terms-link {
+    color: #0053ba;
+    text-decoration: underline;
+    font-size: 14px;
+    cursor: pointer;
+}

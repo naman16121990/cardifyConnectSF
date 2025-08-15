@@ -1,0 +1,178 @@
+<template>
+    <lightning-card title="Executive Referrals" icon-name="custom:custom63">
+        <div class="outer-wrapper">
+        <!-- Widget column -->
+
+  <div class="slds-grid slds-wrap slds-gutters slds-align-top">
+    <!-- Widget column -->
+    <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-3">
+      <c-number-widget 
+        widget-title="External QR Licenses" 
+        display-value={externalLicenses} 
+        footer-text="Remaining">
+      </c-number-widget>
+    </div>
+
+    <!-- Description column -->
+<div class="slds-col slds-size_1-of-1 slds-medium-size_2-of-3">
+  <div class="description" style="font-family: 'Arial', sans-serif; color: #333; line-height: 1.5; font-size: 15px; margin-left: 1rem;">
+    <ul style="list-style: disc; padding-left: 1.2rem; margin-top: 0; text-align: left;">
+      <li>
+        Please fill in the <strong>executive contact details</strong> below to generate and send a personalized QR code for <strong>CardifyConnect</strong>.
+      </li>
+      <li>
+        As a <strong>registered agent</strong>, you may refer potential executive customers using your available <strong>referral licenses</strong>.
+      </li>
+      <li>
+        After submission, <strong>contact</strong> and <strong>company</strong> records will be created in <strong>Salesforce</strong> for the referred executive.
+      </li>
+      <li>
+        You will receive a <strong>confirmation</strong> once the QR code has been sent successfully to your executive contact.
+      </li>
+    </ul>
+    <div style="color: #d9534f; font-weight: bold; margin-top: 1rem; text-align: left;">
+      Please note: Each referral consumes one of your assigned licenses.<br>
+      Once your <strong>referral licenses are exhausted</strong>, you will need to contact your administrator to request additional licenses before making new referrals.
+    </div>
+  </div>
+</div>
+
+  </div>
+
+
+            
+
+
+
+            <div class="columns-container">
+                <lightning-card class="column-card">
+                    <div class="form-group">
+                        <lightning-input 
+                            label="Full Name" 
+                            value={fullName} 
+                            onchange={handleInputChange} 
+                            data-id="fullName"
+                            required>
+                        </lightning-input>
+
+                        <lightning-input 
+                            type="tel"
+                            label="Mobile Number"
+                            placeholder="+91 9876543210"
+                            value={mobile}
+                            onchange={handleInputChange}
+                            data-id="mobile"
+                            pattern="[0-9]+"
+                            message-when-pattern-mismatch="Please enter a valid phone number"
+                            required>
+                        </lightning-input>
+
+                        <lightning-input 
+                            type="email"
+                            label="Email Address" 
+                            value={email} 
+                            onchange={handleInputChange} 
+                            data-id="email"
+                            required>
+                        </lightning-input>
+                    </div>
+                </lightning-card>
+
+                <lightning-card class="column-card">
+                    <div class="form-group">
+                        <lightning-input 
+                            label="Company Name" 
+                            value={companyName} 
+                            onchange={handleInputChange} 
+                            data-id="companyName"
+                            required>
+                        </lightning-input>
+
+                        <lightning-input 
+                            label="Designation (Optional)" 
+                            value={designation} 
+                            onchange={handleInputChange} 
+                            data-id="designation"
+                            >
+                        </lightning-input>
+
+                        <lightning-input 
+                            label="Website URL (Optional)" 
+                            type="url"
+                            value={website} 
+                            onchange={handleInputChange} 
+                            data-id="website"
+                            >
+                        </lightning-input>
+                    </div>
+                </lightning-card>
+            </div>
+
+                     <!-- Terms and Conditions Link -->
+            <div class="terms-container">
+                <div class="slds-grid slds-wrap slds-p-top_small" style="justify-content: center; align-items: center;">
+                    <!-- Checkbox and Link Inline -->
+                    <div style="display: flex; align-items: center;">
+                        <lightning-input
+                            type="checkbox"
+                            variant="label-hidden"
+                            onchange={handleAgreeChange}
+                            name="termsAgreement"
+                            checked={isAgreed}
+                            required>
+                        </lightning-input>
+                        <a href="javascript:void(0);" onclick={openModal} class="terms-link" style="margin-left: 0.5rem;">
+                            I Agree to the Terms and Conditions
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+
+            <template if:true={isModalOpen}>
+                <section role="dialog" tabindex="-1" aria-modal="true" aria-labelledby="modal-heading" class="slds-modal slds-fade-in-open">
+                    <div class="slds-modal__container">
+                        <header class="slds-modal__header">
+                            <h2 id="modal-heading" class="slds-text-heading_medium">Terms and Conditions</h2>
+                        </header>
+                        <div class="slds-modal__content slds-p-around_medium">
+                                <p><strong>1. Consent to Data Collection:</strong><br/>
+                                You consent to the collection, processing, and storage of your personal information provided in this form (including but not limited to your name, contact details, company information, and other relevant data) for the purpose of generating your personalized QR code and maintaining accurate contact and account records in our Salesforce system.</p>
+
+                                <p><strong>2. Data Usage:</strong><br/>
+                                Your data will be used solely for business purposes related to the services we provide, including but not limited to communication, marketing, and customer support as permitted by applicable laws.</p>
+
+                                <p><strong>3. Data Retention:</strong><br/>
+                                Your information will be retained securely for as long as necessary to fulfill the purpose outlined above or as required by law.</p>
+
+                                <p><strong>4. Right to Withdraw Consent:</strong><br/>
+                                You have the right to withdraw your consent at any time by contacting our support team. Upon withdrawal, we will cease use of your data for any purposes beyond legal or contractual obligations.</p>
+
+                                <p><strong>5. Privacy and Security:</strong><br/>
+                                We are committed to protecting your data privacy and employ reasonable security safeguards to protect your information from unauthorized access or disclosure.</p>
+
+                                <p><strong>6. Updates to Terms:</strong><br/>
+                                We may update these terms from time to time. Continued use of our services after such updates constitutes acceptance of the new terms.</p>
+                        </div>
+                        <footer class="slds-modal__footer">
+                            <lightning-button variant="neutral" label="Close" onclick={closeModal}></lightning-button>
+                        </footer>
+                    </div>
+                </section>
+                <div class="slds-backdrop slds-backdrop_open"></div>
+            </template>
+
+
+            <div class="button-container">
+                <lightning-button 
+                    class="submit-btn" 
+                    variant="brand" 
+                    label="Cardify Your Referral" 
+                    title="Submit" 
+                    onclick={handleSubmit} 
+                    disabled={isLoading}>
+                </lightning-button>
+            </div>
+        </div>
+    </lightning-card>
+</template>

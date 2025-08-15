@@ -1,0 +1,52 @@
+<template>
+        <lightning-card  variant="Narrow"  title="Manage Dependent Picklists" icon-name="standard:account">
+            <lightning-button-icon  icon-name="utility:down" variant="border-filled" alternative-text="Show More" slot="actions"></lightning-button-icon>
+
+            <lightning-tabset>
+                <lightning-tab label="Create Picklists">
+                    <p class="slds-p-horizontal_small">            
+                        <lightning-layout horizontal-align="center" class="slds-m-*">
+                            <!--row1-->
+                            <lightning-layout-item size="0.5"></lightning-layout-item>
+                            <lightning-layout-item size="3">
+                                <lightning-combobox label="Choose an Object" value={selectedObject} options={options} onchange={handleObjectChange}></lightning-combobox>
+                            </lightning-layout-item>
+                            <lightning-layout-item size="1"></lightning-layout-item>
+                            <lightning-layout-item size="3">
+                                <lightning-combobox label="Choose a Record Type"  value={selectedRecordType}  options={recordTypes} onchange={handleRecordTypeChange}> </lightning-combobox>
+                            </lightning-layout-item>
+                            <lightning-layout-item size="1"></lightning-layout-item>
+                            <lightning-layout-item size="3">
+                                <lightning-combobox label="Choose Parent Picklist" value={selectedParentPicklist} options={parentPicklist} onchange={handlePicklistChange}> </lightning-combobox>
+                            </lightning-layout-item>
+                            <lightning-layout-item size="0.5"></lightning-layout-item>
+                            <!--row1-->
+                        </lightning-layout>
+                        <lightning-layout horizontal-align="center" class="slds-m-top_medium">
+                                <!--<div style="height: 300px;">-->
+                                    <lightning-datatable
+                                            key-field="id"
+                                            data={data}
+                                            show-row-number-column
+                                            row-number-offset={rowOffset}
+                                            suppress-bottom-bar
+                                            draft-values={draftValues}
+                                            columns={columns}>
+                                    </lightning-datatable>
+                                <!--</div>-->
+                        </lightning-layout>
+                    </p>
+                </lightning-tab>
+                <lightning-tab label="Edit Picklists">
+                    Two Content !
+                </lightning-tab>
+                <lightning-tab label="View Picklists">
+                    Three Content !
+                </lightning-tab>
+            </lightning-tabset>
+
+            <p slot="footer">    
+                <lightning-button variant="brand" label="Create Picklist Dependencies" title="Primary action" onclick={handleClick} class="slds-m-left_x-small"></lightning-button>
+            </p>
+        </lightning-card>
+</template>

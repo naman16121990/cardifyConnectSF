@@ -1,0 +1,15 @@
+<template>
+    <lightning-card title={widgetTitle} icon-name="standard:number_input" class="widget-card">
+        <div class="number-container">
+            <lightning-formatted-number 
+                value={displayValue}
+                format-style={formatStyle}
+                maximum-fraction-digits={maxFractionDigits}
+                minimum-fraction-digits={minFractionDigits}
+                class="number-text">
+            </lightning-formatted-number>
+        </div>
+        
+        <p slot="footer" class="footer-text">{footerText}</p>
+    </lightning-card>
+</template>

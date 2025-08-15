@@ -1,0 +1,93 @@
+<template>
+    <!-- SLDS grid for 2-column layout -->
+    <div class="slds-grid slds-wrap slds-gutters">
+        <div class="slds-col slds-size_1-of-2">
+            <c-number-widget 
+                widget-title="Internal QR Licenses" 
+                display-value={internalLicenses} 
+                footer-text="Remaining">
+            </c-number-widget>
+        </div>
+        <div class="slds-col slds-size_1-of-2">
+            <c-number-widget 
+                widget-title="Referral QR Licenses" 
+                display-value={referralLicenses} 
+                footer-text="Remaining">
+            </c-number-widget>
+        </div>
+        <div class="slds-col slds-size_1-of-1">
+
+    <lightning-card class="purchase-card slds-col slds-size_1-of-1" title="Purchase Licenses">
+        <lightning-layout multiple-rows>
+            
+            <!-- Internal QR Licenses -->
+            <lightning-layout-item size="12" medium-device-size="6" padding="around-small">
+                <lightning-card class="license-box" title="Internal QR Licenses" icon-name="standard:license">
+                    <div class="slds-p-around_medium">
+                        <p class="price-text">Per License Rate: 
+                            <span class="price-value">{internalRate}</span>
+                        </p>
+                        <lightning-input
+                            type="number"
+                            label="Number of Licenses"
+                            min="10"
+                            value={internalQty}
+                            onchange={handleInternalQtyChange}
+                            message-when-too-low="Minimum 10 licenses"
+                        ></lightning-input>
+                        <p class="subtotal-text slds-m-top_medium">
+                            Subtotal: <span class="subtotal-value">₹{internalSubtotal}</span>
+                        </p>
+                    </div>
+                </lightning-card>
+            </lightning-layout-item>
+
+            <!-- Referral QR Licenses -->
+            <lightning-layout-item size="12" medium-device-size="6" padding="around-small">
+                <lightning-card class="license-box" title="Referral QR Licenses" icon-name="standard:license">
+                    <div class="slds-p-around_medium">
+                        <p class="price-text">Per License Rate: 
+                            <span class="price-value">{referralRate}</span>
+                        </p>
+                        <lightning-input
+                            type="number"
+                            label="Number of Licenses"
+                            min="5"
+                            value={referralQty}
+                            onchange={handleReferralQtyChange}
+                            message-when-too-low="Minimum 5 licenses"
+                        ></lightning-input>
+                        <p class="subtotal-text slds-m-top_medium">
+                            Subtotal: <span class="subtotal-value">₹{referralSubtotal}</span>
+                        </p>
+                    </div>
+                </lightning-card>
+            </lightning-layout-item>
+
+            <!-- GST & Total Summary -->
+            <lightning-layout-item size="12" padding="around-small">
+                <div class="summary-box slds-box slds-theme_default slds-p-around_medium">
+                    <p class="gst-line">
+                        GST (18%): <strong>₹{gstAmount}</strong>
+                    </p>
+                    <p class="total-line">
+                        Total Amount: <span>₹{totalAmount}</span>
+                    </p>
+                    <lightning-button
+                        class="pay-button"
+                        label={payLabel}
+                        variant="brand"
+                        onclick={handlePayment}
+                        disabled={isPayDisabled}
+                    >
+                    </lightning-button>
+                </div>
+            </lightning-layout-item>
+
+        </lightning-layout>
+    </lightning-card>
+
+
+        </div>
+    </div>
+</template>
